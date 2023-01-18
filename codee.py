@@ -14,10 +14,13 @@ def addstuff():
     stuff.delete(0,END)
 
 def remove():
-    for item in display.curselection():
-        a=int(item)
-        task.pop(a)
-        display.delete(display.curselection())
+    sel = display.curselection()
+    for index in sel[::-1]:
+        display.delete(index)
+    #for item in display.curselection():
+     #   a=int(item)
+      #  task.pop(a)
+      #  display.delete(display.curselection())
 
 def save_list():
     filename=filedialog.asksaveasfilename( initialdir="C:\\Users\\Admin\\OneDrive\\Documents\\to-do-list\\to-do-list\\data\\",title="save list", filetype=(("Dat File","*.dat"),("All files","*.*")))
@@ -51,7 +54,7 @@ window.geometry("500x500")
 label=Label(window,text="TO DO LIST",font=("Arial",30)).pack()
 
 #listbox
-display = Listbox(window,font=('Helvetica', 12), height=12, width=500)
+display = Listbox(window,font=('Helvetica', 12), height=12, width=500,selectmode="multiple")
 display.place(x=0,y=50)
 
 #scroll bar
