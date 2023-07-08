@@ -6,11 +6,14 @@ task =[]
 #fuctions
 def addstuff():
     content=stuff.get()
-    task.append(content)
-    count=len(task)
-    for i in task:
-        if task.index(i)==count-1:
-            display.insert(END,i)
+    if (content=='' or content.isspace()):
+        pass
+    else:
+        task.append(content)
+        count=len(task)
+        for i in task:
+            if task.index(i)==count-1:
+                display.insert(END,i)
     stuff.delete(0,END)
 
 def remove():
@@ -51,7 +54,7 @@ def delete_list():
 window=Tk()
 window.title("to-do list")
 window.geometry("500x500")
-label=Label(window,text="TO DO LIST",font=("Arial",30)).pack()
+label=Label(window,text="TO DO LIST",font=("Arial",30))
 
 #listbox
 display = Listbox(window,font=('Helvetica', 12), height=12, width=500,selectmode="multiple")
@@ -62,7 +65,11 @@ scrollbar = Scrollbar(window)
 scrollbar.pack(side = RIGHT, fill = BOTH)
 display.config(yscrollcommand = scrollbar.set)
 scrollbar.config(command = display.yview)
-
+# scroll bar to listbox
+scrollbar1 = Scrollbar(window,orient=HORIZONTAL)
+scrollbar1.pack(side = BOTTOM, fill = BOTH)
+display.config(xscrollcommand = scrollbar1.set)
+scrollbar1.config(command = display.xview)
 
 
 #insert task
